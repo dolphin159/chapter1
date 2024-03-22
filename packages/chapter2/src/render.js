@@ -18,6 +18,9 @@ export function createElement(node) {
     element.setAttribute(key, value);
   });
 
+  if (typeof node.children === 'string') {
+    element.appendChild(document.createTextNode(node.children));
+  }
   // 자식 dom으로 변환 후 vdom 자식추가
   node.children.map(createElement).forEach((child) => {
     element.appendChild(child);
